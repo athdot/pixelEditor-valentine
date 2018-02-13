@@ -27,11 +27,17 @@
 	document.body.appendChild(tempc);
 	var tempctx = tempc.getContext("2d");
 	for(var i = 0; i < wid; i++){
+		if(i%2 == 0){
+			on = false;	
+		}else{
+			on = true;	
+		}
+		
 		for(var j = 0; j < hig; j++){
 			if(on){
-				tempc.fillStyle = "lightgray";
+				tempctx.fillStyle = "lightgray";
 			}else{
-				tempc.fillStyle = "gray";
+				tempctx.fillStyle = "gray";
 			}
 			tempc.fillRect(i*10,j*10,10,10);
 			on = !on;
