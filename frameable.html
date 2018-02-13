@@ -68,18 +68,18 @@
 
 
       newImage(50,50);
-      alert(window.parent.document.getElementById('zoom').innerHTML); 
+      alert(window.parent.document.getElementById('zoom').innerHTML.replace(/(\r\n|\n|\r)/gm,"")); 
       setInterval(function(){
 	      sl = document.body.scrollLeft;
         st = document.body.scrollTop;
 	      if(mouseDown){
-  	      var col = window.parent.document.getElementById('colorHolder').innerHTML; 
+  	      var col = window.parent.document.getElementById('colorHolder').innerHTML.replace(/(\r\n|\n|\r)/gm,"");; 
   	      changeColor(col);
 		      draw();  
         }
 
-	      var parz = window.parent.document.getElementById('zoom'); 
-        zoom(parz.innerHTML + "%");
+	      var parz = window.parent.document.getElementById('zoom').innerHTML.replace(/(\r\n|\n|\r)/gm,"");
+        zoom(parz + "%");
       },1)
     </script>
   </body>
