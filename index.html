@@ -16,14 +16,14 @@
       var w = document.getElementById("w").value;
       var h = document.getElementById("h").value;
       document.getElementById("yeee").contentWindow.newImage(w,h);
-      }
-    </script>
-    <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px;height: 100vh;">Your Browser does not support this frame</iframe>
-    <script>
-      var ye = document.getElementById("yeee");
+        var ye = document.getElementById("yeee");
       ye.style.height = window.innerHeight-100 + "px";
       window.onresize = function(){
         ye.style.height = window.innerHeight-100 + "px";
       }
+      }
+    </script>
+    <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px;height: 100vh;">Your Browser does not support this frame</iframe>
+      
   </body>
 </html>
