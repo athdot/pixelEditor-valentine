@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <canvas id="currentColor" width="10" height="10" style="position:absolute; z-index: 1000; opacity: 0.8; display:none;"></canvas>
+    <canvas id="drawCanvas" style="position:absolute; top:50%; left: 50%; background-color:blue; box-shadow: 0px 5px 10px #888888; transform:translate(-50%,-50%);"></canvas>
+    <script>
+      document.body.style.backgroundColor = "lightgray";
+      var z = 10;
+      var c = document.getElementById("currentColor");
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "green";
+      ctx.fillRect(0,0,128,128);
+
+      var i = document.getElementById("drawCanvas");
+      i.width = 0;
+      i.height = 0;
+
+      function newImage(wid,hig){
+	      i.width = wid*10;
+        i.height = hig*10;
+      }
+
+      function zoom(level){
+	      document.body.style.zoom = level;
+      }
+
+      var mouseDown = false;
+      window.addEventListener('mousedown', function() { mouseDown = true })
+      window.addEventListener('mouseup', function() { mouseDown = false })
+      window.addEventListener('mousemove', skid)
+
+      var x = 0;
+      var y = 0;
+      var sl = 0;
+      var st = 0;
+      function skid(event){
+        var cs = document.getElementById("drawCanvas");
+        x = event.clientX;
+        y = event.clientY;
+        var zeep = document.body.style.zoom;
+        zeep.substring(0,zeep.length-1);
+        zeep = parseInt(zeep);
+        zeep = zeep/100;
+        x = x/zeep;
+        y = y/zeep;
+        var yee = document.getElementById("currentColor");
+        yee.style.top = y-st+"px";
+        yee.style.left = x-sl+"px";
+      }
+
+      function draw(){
+	      var c2 = document.getElementById("drawCanvas");
+        var ctx2 = c2.getContext("2d");
+        var im = document.getElementById("currentColor");
+        var rect = c2.getBoundingClientRect();
+        var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
+        var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
+        ctx2.drawImage(im,x2,y2);
+      }
+
+      function changeColor(color){
+        var c = document.getElementById("currentColor");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = color;
+        ctx.fillRect(0,0,c.width,c.height);
+      }
+
+
+
+      newImage(50,50);
+
+      setInterval(function(){
+	      sl = document.body.scrollLeft;
+        st = document.body.scrollTop;
+	      if(mouseDown){
+  	      var col = window.parent.document.getElementById('colorHolder').innerHTML; 
+  	      changeColor(col);
+		      draw();  
+        }
+
+	      var parz = window.parent.document.getElementById('zoom').innerHTML; 
+        zoom(parz + "%");
+      },1)
+    </script>
+  </body>
+</html>
