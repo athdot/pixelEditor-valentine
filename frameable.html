@@ -68,7 +68,7 @@
 
 
       newImage(50,50);
-
+      alert(window.parent.document.getElementById('zoom')); 
       setInterval(function(){
 	      sl = document.body.scrollLeft;
         st = document.body.scrollTop;
@@ -78,8 +78,8 @@
 		      draw();  
         }
 
-	      var parz = window.parent.document.getElementById('zoom').innerHTML; 
-        zoom(parz + "%");
+	      var parz = window.parent.document.getElementById('zoom'); 
+        zoom(parz.innerHTML + "%");
       },1)
     </script>
   </body>
