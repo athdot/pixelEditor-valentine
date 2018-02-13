@@ -19,7 +19,9 @@
       var h = document.getElementById("h").value;
       document.getElementById("yeee").contentWindow.newImage(w,h);
         var ye = document.getElementById("yeee");
+        ye.onload = function(){
       ye.style.height = window.innerHeight-100 + "px";
+        }
       window.onresize = function(){
         ye.style.height = window.innerHeight-100 + "px";
       }
