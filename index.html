@@ -12,14 +12,14 @@
     <!-- COME ON -->
     <!-- JEEBUS CHIPS -->
     <button onclick="go()">Go!</button>
-    <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px; border:none;">Your Browser does not support this frame</iframe>
+    <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px; border:none;" onload="sassy()">Your Browser does not support this frame</iframe>
        <script>
       function go(){
       var w = document.getElementById("w").value;
       var h = document.getElementById("h").value;
       document.getElementById("yeee").contentWindow.newImage(w,h);
-        var ye = document.getElementById("yeee");
-        ye.onload = function(){
+        function sassy(){
+          var ye = document.getElementById("yeee");
       ye.style.height = window.innerHeight-100 + "px";
         }
       window.onresize = function(){
