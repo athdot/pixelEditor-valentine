@@ -14,6 +14,10 @@
     <button onclick="go()">Go!</button>
     <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px; border:none;" onload="sassy()">Your Browser does not support this frame</iframe>
        <script>
+         var isChrome = !!window.chrome && !!window.chrome.webstore;
+         if(!isChrome){
+           window.location.href = "https://athdot.github.io/pixelEditor-valentine/useGoogle.html";
+         }
       var ye = document.getElementById("yeee");
       ye.style.height = window.innerHeight-100 + "px";
       function go(){
