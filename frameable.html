@@ -62,17 +62,17 @@
 		ii.clearRect(0,0,i.width,i.height);
 	}
 	    
-	function exportImage(filetype,name){
+	function exportImage(name){
 		var cc = document.createElement("finished");
 		cc.width = i.width/10;
 		cc.height = i.height/10;
 		document.body.appendChild(cc);
 		var ccc = cc.getContext("2d");
 		ccc.drawImage(i,0,0,cc.width,cc.height);
-		var exp = cc.toDataURL("image\"+filetype);
+		var exp = cc.toDataURL();
 		cc.remove();
   		var link = document.createElement("a");
-  		link.download = name;
+  		link.download = name+".png";
  		 link.href = exp;
   		document.body.appendChild(link);
   		link.click();
