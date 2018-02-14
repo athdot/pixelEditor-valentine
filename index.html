@@ -13,8 +13,25 @@
     <!-- JEEBUS CHIPS -->
     <button onclick="go()">Go!</button>
     <button onclick="save()">Save</button>
+    <input type='file' onchange="readURL(this);" />
+    <img id="blah" src="#" alt="your image" />
+    <button onclick="load()">Load In</button>
     <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px; border:none;" onload="sassy()">Your Browser does not support this frame</iframe>
        <script>
+         function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
          var isChrome = !!window.chrome && !!window.chrome.webstore;
          if(!isChrome){
            window.location.href = "https://athdot.github.io/pixelEditor-valentine/useGoogle.html";
@@ -31,6 +48,10 @@
       }
       function save(){
         document.getElementById("yeee").contentWindow.exportImage("sassy");
+      }
+      function load(){
+        var img = document.getElementById("blah");
+        document.getElementById("yeee").contentWindow.loadImage(img);
       }
     </script>
   </body>
