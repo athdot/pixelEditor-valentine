@@ -56,6 +56,30 @@
 	      document.body.style.zoom = level;
       }
 
+	function clear(){
+		var i = document.getElementById("drawCanvas");
+		var ii = i.getContext("2d");
+		ii.clearRect(0,0,i.width,i.height);
+	}
+	    
+	function exportImage(filetype,name){
+		var cc = document.createElement("finished");
+		cc.width = i.width/10;
+		cc.height = i.height/10;
+		document.body.appendChild(cc);
+		var ccc = cc.getContext("2d");
+		ccc.drawImage(i,0,0,cc.width,cc.height);
+		var exp = cc.toDataURL("image\"+filetype);
+		cc.remove();
+  		var link = document.createElement("a");
+  		link.download = name;
+ 		 link.href = exp;
+  		document.body.appendChild(link);
+  		link.click();
+ 		 document.body.removeChild(link);
+ 		 delete link;
+	}
+	    
       var mouseDown = false;
       window.addEventListener('mousedown', function() { mouseDown = true })
       window.addEventListener('mouseup', function() { mouseDown = false })
