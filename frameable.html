@@ -105,6 +105,15 @@
       }
 
       function draw(){
+	      if(window.parent.document.getElementById('colorHolder').value === "clear"){
+		      var c2 = document.getElementById("drawCanvas");
+        var ctx2 = c2.getContext("2d");
+        var im = document.getElementById("currentColor");
+        var rect = c2.getBoundingClientRect();
+        var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
+        var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
+        ctx2.clearRect(x2,y2,10,10);
+	      }else{
 	      var c2 = document.getElementById("drawCanvas");
         var ctx2 = c2.getContext("2d");
         var im = document.getElementById("currentColor");
@@ -112,6 +121,7 @@
         var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
         var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
         ctx2.drawImage(im,x2,y2);
+	      }
       }
 
       function changeColor(color){
