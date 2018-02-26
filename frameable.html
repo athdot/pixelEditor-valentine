@@ -152,6 +152,7 @@
       function changeColor(color){
         var c = document.getElementById("currentColor");
         var ctx = c.getContext("2d");
+	ctx.clearRect(0,0,c.width,c.height);
         ctx.fillStyle = color;
         ctx.fillRect(0,0,c.width,c.height);
       }
