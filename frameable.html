@@ -44,8 +44,6 @@
 	var i = document.getElementById("drawCanvas");
 	i.width = wid*10;
         i.height = hig*10;
-	i.style.top = Math.floor(window.innerHeight/2 - hig*5) + "px";
-	i.style.left = Math.floor(window.innerWidth/2 - wid*5) + "px";
 	      
 	//background image
 	var on = false;
@@ -80,8 +78,6 @@
 
       function zoom(level){
 	      var can = document.getElementById("drawCanvas");
-	      can.style.top = Math.floor((window.innerHeight/2)/(level/100) - can.height/2) + "px";
-	      can.style.width = Math.floor((window.innerWidth/2)/(level/100) - can.width/2) + "px";
 	      document.body.style.zoom = level;
       }
 
