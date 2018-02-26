@@ -4,9 +4,11 @@
     <title>Pixel Editor - Valentines Day</title>
   </head>
   <body>
-    <input id="colorHolder" type="text" value="green" />
+    Erase: <input type="checkbox" id="myCheck">
+    <input id="colorHolder" style="display:none;" type="text" value="green" />
       <input type="color"  onfocusout="myFunction()" id="color" name="favcolor" value="#ff0000" style=" display:none; padding: 0; border: none; background: none; width: 40px; height: 40px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
     <div id="color2" style="width: 40px; height: 40px; border-radius: 20px; position:absolute; right: 0;" onclick="clickColor()">
+      <div id="erase" style="display:none;">false</div>
       <script>
         var co = document.getElementById("color2");
         var current = document.getElementById("color");
@@ -16,7 +18,12 @@
         }
           var letsGo = setInterval(function(){
              co.style.backgroundColor = current.value;
-            colorChanged();
+            var erase = document.getElementById("myCheck").checked;
+            if(!erase){
+              colorChanged();
+            }else{
+              var ccc = document.getElementById("colorHolder").value = "clear";
+            }
           },10);
       </script>
     </div>  
