@@ -81,7 +81,7 @@
       function zoom(level){
 	      var can = document.getElementById("drawCanvas");
 	      can.style.top = Math.floor((window.innerHeight/2)/(level/100) - can.height/2) + "px";
-	      can.style.width = Math.floor((window.innerHeight/2)/(level/100) - can.width/2) + "px";
+	      can.style.width = Math.floor((window.innerWidth/2)/(level/100) - can.width/2) + "px";
 	      document.body.style.zoom = level;
       }
 
