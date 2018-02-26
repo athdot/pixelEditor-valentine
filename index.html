@@ -16,10 +16,10 @@
         }
           var letsGo = setInterval(function(){
              co.style.backgroundColor = current.value;
+            colorChanged();
           },10);
       </script>
     </div>  
-    <button onclick="colorChanged()">Go</button>
     <input id="zoom" type="text" value="100"/>
     <br>
     Width: <input id="w" type="text" />
