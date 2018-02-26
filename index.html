@@ -12,7 +12,11 @@
         var current = document.getElementById("color");
         co.style.backgroundColor = current.value;
         function clickColor(){
-          current.click(); 
+          current.click();
+          var col = current.value;
+          var letsGo = setInterval(function(){
+             co.style.backgroundColor = current.value;
+          },10);
         }
       </script>
     </div>  
