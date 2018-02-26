@@ -5,8 +5,18 @@
   </head>
   <body>
     <input id="colorHolder" type="text" value="green" />
-      <input type="color" id="color" name="favcolor" value="#ff0000" style=" padding: 0; border: none; background: none; width: 40px; height: 40px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
-      <button onclick="colorChanged()">Go</button>
+      <input type="color" id="color" name="favcolor" value="#ff0000" style=" display:none; padding: 0; border: none; background: none; width: 40px; height: 40px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
+    <div id="color2" style="width: 40px; height: 40px; border-radius: 20px; " onclick="clickColor()">
+      <script>
+        var co = document.getElementById("color2");
+        var current = document.getElementById("color");
+        co.style.backgroundColor = current.value;
+        function clickColor(){
+          current.click(); 
+        }
+      </script>
+    </div>  
+    <button onclick="colorChanged()">Go</button>
     <input id="zoom" type="text" value="100"/>
     <br>
     Width: <input id="w" type="text" />
@@ -24,6 +34,9 @@
           var inpt = document.getElementById("color").value; 
           var col = document.getElementById("colorHolder");
           col.value = inpt;
+           var co = document.getElementById("color2");
+            var current = document.getElementById("color");
+            co.style.backgroundColor = current.value;
          }
          function readURL(input) {
         if (input.files && input.files[0]) {
