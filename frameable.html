@@ -34,16 +34,15 @@
 		tem2.drawImage(image,0,0,wid,hig);
 		// get image data and copy
 		newImage(wid,hig);
-		alert("1");
-		var imgData = tem2.getImageData(10, 10, 1, 1);
-		alert("2");
 		var nim = document.getElementById("drawCanvas");
-		alert("3");
 		var nim2 = nim.getContext("2d");
-		alert("4")
-		nim2.fillStyle = "rgb(" + imgData[0] + "," + imgData[1] + "," + imgData[2] + ")";
-		nim2.fillRect(0,0,10,10);
-		alert("5");
+		for(var i = 0; i < wid; i++){
+			for(var j = 0; j < hig; j++){
+				var imgData = tem2.getImageData(i, j, 1, 1);
+				nim2.fillStyle = "rgb(" + imgData[0] + "," + imgData[1] + "," + imgData[2] + ")";
+				nim2.fillRect(i*10,j*10,10,10);
+			}
+		}
       }
 	    
       function newImage(wid,hig){
