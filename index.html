@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pixel Editor - Valentines Day</title>
+  <title>Editor</title>
+  <style>
+    .menubar{
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 25px;
+      background-color: rgb(140,140,140);
+      box-shadow: 0px 6px 10px rgb(100,100,100);
+      z-index: 1000;
+    }
+    .leftbar{
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 100vh;
+      background-color: rgb(160,160,160);
+      box-shadow: 6px 0px 10px rgb(90,90,90);
+    }
+    .rightbar{
+      position:absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 100vh;
+      background-color: rgb(160,160,160);
+      box-shadow: -6px 0px 10px rgb(90,90,90);
+    }
+  </style>
   </head>
   <body>
-    Erase: <input type="checkbox" id="myCheck">
-    <input id="colorHolder" style="display:none;" type="text" value="green" />
+    <div id="menuBar" class="menubar">
+      Tabs and stuff
+    </div> 
+    <!-- Left bar (with color editing) -->
+    <div id="leftBar" class="leftbar">
+      
+      Erase: <input type="checkbox" id="myCheck">
+          <input id="colorHolder" style="display:none;" type="text" value="green" />
       <input type="color"  onfocusout="myFunction()" id="color" name="favcolor" value="#ff0000" style=" display:none; padding: 0; border: none; background: none; width: 40px; height: 40px; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px;">
     <div id="color2" style="width: 40px; height: 40px; border-radius: 20px; position:absolute; right: 0;" onclick="clickColor()">
       <div id="erase" style="display:none;">false</div>
-      <script>
+    </div>  
+    <input id="zoom" min="50" max="600" type="range" value="100"/>
+    <br>
+    Width: <input id="w" type="text" />
+    | Height: <input id="h" type="text" />
+      <button onclick="go()">Go!</button>
+    <button onclick="save()">Save</button>
+    <input type='file' onchange="readURL(this);" />
+    <img id="blah" src="#" alt="your image" />
+    <button onclick="load()">Load In</button>
+      
+    </div>
+    <div id="rightBar" class="rightbar">
+    
+    </div>
+    
+        <iframe id="yeee" src="frameable.html" style="position:absolute; left: 150px; top: 25px; border:none;" onload="sassy()">Your Browser does not support this frame</iframe>
+    
+    <script>
         var co = document.getElementById("color2");
         var current = document.getElementById("color");
         co.style.backgroundColor = current.value;
@@ -25,21 +79,6 @@
               var ccc = document.getElementById("colorHolder").value = "clear";
             }
           },10);
-      </script>
-    </div>  
-    <input id="zoom" min="50" max="600" type="range" value="100"/>
-    <br>
-    Width: <input id="w" type="text" />
-    | Height: <input id="h" type="text" />
-    <!-- COME ON -->
-    <!-- JEEBUS CHIPS -->
-    <button onclick="go()">Go!</button>
-    <button onclick="save()">Save</button>
-    <input type='file' onchange="readURL(this);" />
-    <img id="blah" src="#" alt="your image" />
-    <button onclick="load()">Load In</button>
-    <iframe id="yeee" src="frameable.html" style="width: 100%; position:absolute; left: 0; top: 100px; border:none;" onload="sassy()">Your Browser does not support this frame</iframe>
-       <script>
          function colorChanged(){
           var inpt = document.getElementById("color").value; 
           var col = document.getElementById("colorHolder");
@@ -70,7 +109,8 @@
            window.location.href = "https://athdot.github.io/pixelEditor-valentine/useGoogle.html";
          }
       var ye = document.getElementById("yeee");
-      ye.style.height = window.innerHeight-100 + "px";
+      ye.style.height = window.innerHeight-25 + "px";
+      ye.style.width = window.innerWidth-300 + "px";
       function go(){
       var w = document.getElementById("w").value;
       var h = document.getElementById("h").value;
