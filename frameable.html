@@ -4,6 +4,7 @@
     <canvas id="currentColor" width="10" height="10" style="position:absolute; z-index: 1000; opacity: 0.8; display:none;"></canvas>
     <canvas id="drawCanvas" style="position:absolute; top:0; left: 0; box-shadow: 0px 5px 10px #888888;  border: 1px solid;"></canvas>
     <script>
+	    var loadIm = false;
 	var backImg;
       document.body.style.backgroundColor = "lightgray";
       var z = 10;
@@ -19,10 +20,19 @@
 		var image = window.parent.document.getElementById('blah'); 
 		var wid = image.width;
 		var hig = image.height;
-		newImage(wid,hig);
-		var i = document.getElementById("drawCanvas");
-		i.getContext("2d").drawImage(image,wid*10,hig*10);
-	}
+	var i = document.getElementById("drawCanvas");
+	i.width = wid*10;
+        i.height = hig*10;
+	//temporary canvas
+		var tem = document.createElement("canvas");
+		tem.id = "imageReadable";
+		tem.width = wid;
+		tem.height = hig;
+		tem.style="position:absolute; top: 0; left: 0; z-index: 300;";
+		document.body.appendChild(tem);
+		var tem2 = tem.getContext("2d");
+		tem2.drawImage(image,0,0,wid,hig);
+      }
 	    
       function newImage(wid,hig){
 	var i = document.getElementById("drawCanvas");
