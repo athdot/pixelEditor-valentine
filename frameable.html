@@ -40,8 +40,9 @@
 		var nim = document.getElementById("drawCanvas");
 		alert("3");
 		var nim2 = nim.getContext("2d");
-		alert("4");
-    		nim2.putImageData(imgData, 10, 10,10,10);
+		alert("4")
+		nim2.fillStyle = "rgb(" + imgData[0] + "," + imgData[1] + "," + imgData[2] + ")";
+		nim2.fillRect(0,0,10,10);
 		alert("5");
       }
 	    
