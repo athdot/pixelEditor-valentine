@@ -28,15 +28,16 @@
 		tem.id = "imageReadable";
 		tem.width = wid;
 		tem.height = hig;
-		tem.style="position:absolute; top: 0; left: 0; z-index: 300;";
+		tem.style="position:absolute; top: 0; left: 0; z-index: 300; display:none;";
 		document.body.appendChild(tem);
 		var tem2 = tem.getContext("2d");
 		tem2.drawImage(image,0,0,wid,hig);
 		// get image data and copy
 		newImage(wid,hig);
-		alert("back");
-		var imgData = ctx.getImageData(10, 10, 50, 50);
-    		ctx.putImageData(imgData, 10, 70);
+		var imgData = tem2.getImageData(10, 10, 1, 1);
+		var nim = document.getElementById("drawCanvas");
+		var nim2 = nim.getContext("2d");
+    		nim2.putImageData(imgData, 10, 10,10,10);
       }
 	    
       function newImage(wid,hig){
