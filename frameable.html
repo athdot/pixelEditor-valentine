@@ -34,10 +34,15 @@
 		tem2.drawImage(image,0,0,wid,hig);
 		// get image data and copy
 		newImage(wid,hig);
+		alert("1");
 		var imgData = tem2.getImageData(10, 10, 1, 1);
+		alert("2");
 		var nim = document.getElementById("drawCanvas");
+		alert("3");
 		var nim2 = nim.getContext("2d");
+		alert("4");
     		nim2.putImageData(imgData, 10, 10,10,10);
+		alert("5");
       }
 	    
       function newImage(wid,hig){
