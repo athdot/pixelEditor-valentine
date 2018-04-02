@@ -80,6 +80,8 @@
 	i.style.backgroundImage = "url('"+backImg+"')";
 	tempc.remove();
       }
+	    
+	var fill = false;
 
       function zoom(level){
 	      var can = document.getElementById("drawCanvas");
@@ -133,6 +135,37 @@
         yee.style.top = y-st+"px";
         yee.style.left = x-sl+"px";
       }
+	    
+	function fill(locX,locY,color){
+		var ctxs = document.getElementById("drawCanvas");
+		var ctxss = ctxs.getContext("2d");
+		var colLoc = ctxss.getImageData(locX,locY,1,1).data;
+		
+		var c2 = document.getElementById("drawCanvas");
+        	var ctx2 = c2.getContext("2d");
+		
+        	var im = document.getElementById("currentColor");
+        	var rect = c2.getBoundingClientRect();
+		
+		if(colorEqual(colLoc,color) && locX > -1 && locX < c2.left+1 && locY > -1 && locY < c2.top+1){
+			var c2 = document.getElementById("drawCanvas");
+        		var ctx2 = c2.getContext("2d");
+        		var im = document.getElementById("currentColor");
+        		var rect = c2.getBoundingClientRect();
+        		var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
+        		var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
+        		ctx2.drawImage(im,x2,y2);
+			
+			fill(locX,locY-10,color);
+			fill(locX-10,locY,color);
+			fill(locX,locY+10,color);
+			fill(locX+10,locY,color);
+		}
+	}
+	    
+	function colorEqual(col1,col2){
+		return (col1[0] == col2[0] && col1[1] == col2[1] && col1[2] == col2[2] && col1[3] == col2[3]); 
+	}
 
       function draw(){
 	      if(window.parent.document.getElementById('colorHolder').value === "clear"){
@@ -143,6 +176,15 @@
         var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
         var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
         ctx2.clearRect(x2,y2,10,10);
+	      }else if(fill == true){
+		var c2 = document.getElementById("drawCanvas");
+		var rect = c2.getBoundingClientRect();
+        	var x2 = Math.floor(Math.floor((x-rect.left)/z)*z)-document.body.scrollLeft;
+        	var y2 = Math.floor(Math.floor((y-rect.top)/z)*z)-document.body.scrollTop;
+		var ctxs = document.getElementById("drawCanvas");
+		var ctxss = ctxs.getContext("2d");
+		var colLoc = ctxss.getImageData(locX,locY,1,1).data;
+		fill(x2,y2,colLoc);
 	      }else{
 	      var c2 = document.getElementById("drawCanvas");
         var ctx2 = c2.getContext("2d");
@@ -170,6 +212,12 @@
   	      	changeColor(col);
 		draw();  
         }
+	      
+	      if(window.parent.document.getElementById('fill').value === "true"){
+			fill = true;      
+	      }else{
+			fill = false;      
+	      }
 
 	      var parz = window.parent.document.getElementById('zoom').value;
         zoom(parz + "%");
